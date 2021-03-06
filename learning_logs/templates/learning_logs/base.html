@@ -1,15 +1,34 @@
-<p>
-    <a href="{% url 'learning_logs:index' %}">Learning Log</a>
-    <a href="{% url 'learning_logs:topics' %}">Tematy</a>
-    <a href="{% url 'learning_logs:new_topic' %}">Dodaj nowy temat</a>
-    {% if user.is_authenticated %}
-        Witaj, {{ user.username }}.
-        <a href="{% url "users:logout" %}">Wyloguj się</a>
-    {% else %}
-        <a href="{% url "users:register" %}">Zarejestruj się</a>
-        <a href="{% url "users:login" %}">Zaloguj się</a>
-    {% endif %}
-</p>
-
-{% block content %}{% endblock %}
+{% load bootstrap4 %}
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>Learning Log</title>
+    {% bootstrap_css %}
+    {% bootstrap_jquery jquery="full" %}
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+    <a class="navbar-brand" href="{% url 'learning_logs:index'%}">Learning Log</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <p>
+        <a href="{% url 'learning_logs:index' %}">Learning Log</a>
+        <a href="{% url 'learning_logs:topics' %}">Tematy</a>
+        <a href="{% url 'learning_logs:new_topic' %}">Dodaj nowy temat</a>
+        {% if user.is_authenticated %}
+            Witaj, {{ user.username }}.
+            <a href="{% url "users:logout" %}">Wyloguj się</a>
+        {% else %}
+            <a href="{% url "users:register" %}">Zarejestruj się</a>
+            <a href="{% url "users:login" %}">Zaloguj się</a>
+        {% endif %}
+    </p>
+    {% block content %}{% endblock %}
+</body>
+</html>
 
